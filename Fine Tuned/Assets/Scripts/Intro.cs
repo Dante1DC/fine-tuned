@@ -2,14 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 public class Intro : MonoBehaviour
 {
     public Camera playerCamera;
     public Transform cameraStartPosition;
     public Transform cameraEndPosition;
-    public GameObject blackRectangle;
-    public Text scrollingText;
+    public GameObject startingRectangle;
+    public TMP_Text scrollingText;
     public GameObject titleCard;
     public Button startButton;
     public Button settingsButton;
@@ -22,7 +23,7 @@ public class Intro : MonoBehaviour
     void Start()
     {
         playerCamera.transform.position = cameraStartPosition.position;
-        playerCamera.transform.LookAt(blackRectangle.transform);
+        playerCamera.transform.LookAt(startingRectangle.transform);
         titleCard.SetActive(false);
         StartCoroutine(ScrollText());
     }
@@ -50,7 +51,7 @@ public class Intro : MonoBehaviour
 
     private void ShowTitleCard()
     {
-        blackRectangle.GetComponent<Renderer>().material.color = Color.white; // Change texture/color
+        startingRectangle.GetComponent<Renderer>().material.color = Color.white; // Change texture/color
         titleCard.SetActive(true);
         isTitleCardActive = true;
         startButton.onClick.AddListener(StartGame);
