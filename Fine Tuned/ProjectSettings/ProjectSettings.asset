@@ -706,11 +706,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 0a97ec5f-bb8b-4995-b9db-c5196aa68a78
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Fine Tuned
+  organizationId: unity_9038fc31b7214091ea06
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
