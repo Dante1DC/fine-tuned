@@ -71,6 +71,15 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Project Assets
+/Assets/Customizable Skybox/
+/Assets/Barrels
+/Assets/Barrels.meta
+/Assets/trash_can
+/Assets/Versatile Studio Assets
+/Assets/Vefects
+.vsconfig
+*.meta
 /Assets/HeneGames/*
 /Assets/Kevin Iglesias/* 
-
