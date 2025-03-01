@@ -51,7 +51,6 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
-
 # Unity3D generated file on crash reports
 sysinfo.txt
 
@@ -75,7 +74,6 @@ crashlytics-build.properties
 # Project Assets
 /Assets/Customizable Skybox/
 /Assets/Barrels
-/Assets/Barrels.meta
 /Assets/trash_can
 /Assets/Versatile Studio Assets
 /Assets/Vefects
