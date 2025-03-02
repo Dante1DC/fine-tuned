@@ -9,8 +9,9 @@ The player spawns in front of a billboard, explaining the history of AI City. Af
 
 # Setup
 In order to fork or continue this project, you must first have a Unity account and Unity hub installed on your computer. 
-- For Windows and Mac, go here: https://unity.com/download
-- For Linux, follow these instructions: https://docs.unity3d.com/hub/manual/InstallHub.html#install-hub-linux
+- [Install Page For Windows and Mac](https://unity.com/download)
+- [Instructions for Linux](https://docs.unity3d.com/hub/manual/InstallHub.html#install-hub-linux)
+
 After installing Unity, clone this repository. Then, open Unity Hub, select Open/Import Project, and select the folder that you cloned this repository in. After that, it should load this project into your workspace, and you can begin developing. 
 
 # Credits
