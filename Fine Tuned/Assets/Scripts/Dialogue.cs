@@ -57,14 +57,14 @@ public class Dialogue : MonoBehaviour, IInteractable
         cameraTransform = Camera.main.transform;
     }
 
-    private void Update()
-    {
-        if (isInDialogue && headTransform != null && cameraTransform != null)
-        {
-            // Make the head look at the camera
-            headTransform.LookAt(cameraTransform);
-        }
-    }
+    // private void Update()
+    // {
+    //     if (isInDialogue && headTransform != null && cameraTransform != null)
+    //     {
+    //         // Make the head look at the camera
+    //         headTransform.LookAt(cameraTransform);
+    //     }
+    // }
 
     public void Interact()
     {
