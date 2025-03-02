@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AltmanOffice.unity
     guid: e18ed65e291c1da4bb104dab3a083466
+    path: Assets/Scenes/Minigame.unity
+    guid: 4c5c47d23ad984e0295cfef9c89e3ba5
   m_configObjects: {}
