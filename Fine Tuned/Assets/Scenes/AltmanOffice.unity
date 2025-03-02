@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.013954327, g: 0.071915254, b: 0.0997087, a: 1}
+  m_IndirectSpecularColor: {r: 0.0139543265, g: 0.071915284, b: 0.099708736, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2425,7 +2425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5944654773601380006, guid: 8b2ed08f82f4cea41907e2cf2f8938c5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4789944
+      value: 1.5212172
       objectReference: {fileID: 0}
     - target: {fileID: 5944654773601380006, guid: 8b2ed08f82f4cea41907e2cf2f8938c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3570,6 +3570,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2016924506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016924500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2cd90e18a304c866637c284d1ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sadFace: {fileID: 0}
+  happyFace: {fileID: 0}
+  idleFace: {fileID: 0}
+  face: {fileID: 0}
+  canvas: {fileID: 1883006767}
+  audioClip: {fileID: 0}
 --- !u!1 &2030889151
 GameObject:
   m_ObjectHideFlags: 0
