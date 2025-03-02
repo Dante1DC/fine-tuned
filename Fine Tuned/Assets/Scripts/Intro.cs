@@ -21,6 +21,11 @@ public class Intro : MonoBehaviour
     private bool isScrolling = true;
     private bool isTitleCardActive = false;
 
+    // ui images (title card background)
+    public GameObject Back; 
+    public GameObject Middle; 
+    public GameObject Front; 
+
     void Start()
     {
         startingRectangle.GetComponent<Renderer>().material.color = Color.black;
@@ -32,8 +37,18 @@ public class Intro : MonoBehaviour
         
         playerCamera.transform.position = cameraStartPosition.position;
         playerCamera.transform.LookAt(startingRectangle.transform);
+
         titleCard.SetActive(false);
+        Back.SetActive(false);
+        Middle.SetActive(false);
+        Front.SetActive(false);
+
         StartCoroutine(ScrollText());
+
+        if (isScrolling = true){
+            startButton.gameObject.SetActive(false);
+            settingsButton.gameObject.SetActive(false);
+        }
     }
 
     void Update()
@@ -63,7 +78,10 @@ public class Intro : MonoBehaviour
 
     private void ShowTitleCard()
     {
+         if (isTitleCardActive) return; // Prevent multiple activations
+
         Debug.Log("Showing title card...");
+        isTitleCardActive = true; // Mark it as active
         StartCoroutine(FadeOutTextAndChangeColor());
     }
 
@@ -97,7 +115,17 @@ public class Intro : MonoBehaviour
         startingRectangle.GetComponent<Renderer>().material.color = targetRectangleColor;
 
         titleCard.SetActive(true);
+        Back.SetActive(true);
+        Middle.SetActive(true);
+        Front.SetActive(true);
         isTitleCardActive = true;
+        isScrolling = false;
+
+        if (isScrolling is false){
+            startButton.gameObject.SetActive(true);
+            settingsButton.gameObject.SetActive(true);
+        }
+
         startButton.onClick.AddListener(StartGame);
         settingsButton.onClick.AddListener(OpenSettings);
     }
