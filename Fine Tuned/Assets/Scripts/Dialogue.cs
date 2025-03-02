@@ -71,7 +71,7 @@ public class Dialogue : MonoBehaviour, IInteractable
         if (!isInDialogue)
         {
             // Start dialogue
-            Debug.Log("Starting dialogue");
+            
             StartDialogue();
         }
         else
@@ -79,7 +79,7 @@ public class Dialogue : MonoBehaviour, IInteractable
             if (isTextFullyDisplayed)
             {
                 // Advance to next line
-                Debug.Log("Advancing to next line");
+                
                 NextLine();
             }
             else
@@ -165,6 +165,14 @@ public class Dialogue : MonoBehaviour, IInteractable
 
         // Optionally, reset the head's rotation here if needed
         // headTransform.rotation = Quaternion.identity; // Reset to original rotation
+    }
+
+    // Add this method to return the current dialogue option index
+    public int GetCurrentOptionIndex()
+    {
+        // Assuming each line corresponds to a specific face index
+        // You might need to adjust this logic based on your actual data structure
+        return currentLine;
     }
 }
 

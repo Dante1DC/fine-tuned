@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FaceAnimator : MonoBehaviour
+public class FaceAnimator_jimmy : MonoBehaviour
 {
     private Renderer faceRenderer;
     public Material sadFace;
@@ -61,19 +61,13 @@ public class FaceAnimator : MonoBehaviour
                 UpdateFace(sadFace);
                 break;
             case 4: // Idle Face
-                UpdateFace(happyFace);
+                UpdateFace(sadFace);
                 break;
             case 5: // Idle Face
-                UpdateFace(sadFace);
+                UpdateFace(happyFace);
                 break;
             case 6: // Idle Face
-                UpdateFace(idleFace);
-                break;
-            case 7: // Idle Face
-                UpdateFace(idleFace);
-                break;
-            case 8: // Idle Face
-                UpdateFace(sadFace);
+                UpdateFace(happyFace);
                 break;
             default:
                 UpdateFace(idleFace); // Default to idle face
