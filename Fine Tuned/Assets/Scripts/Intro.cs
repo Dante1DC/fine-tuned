@@ -135,7 +135,7 @@ public class Intro : MonoBehaviour
         Debug.Log("Starting game...");
         player.transform.Rotate(0, 180, 0);
         Vector3 currentPosition = player.transform.position;
-        player.transform.position = new Vector3(currentPosition.x, currentPosition.y + 1, currentPosition.z);
+        player.transform.position = new Vector3(currentPosition.x, currentPosition.y + 2, currentPosition.z);
         playerCamera.transform.rotation = Quaternion.Euler(0, playerCamera.transform.rotation.eulerAngles.y, playerCamera.transform.rotation.eulerAngles.z);
         SceneManager.LoadScene("GameScene");
     }
