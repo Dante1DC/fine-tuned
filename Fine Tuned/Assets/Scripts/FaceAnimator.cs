@@ -14,6 +14,9 @@ public class FaceAnimator : MonoBehaviour
     // Reference to the Dialogue script
     private Dialogue dialogue;
 
+    public AudioClip audioClip;
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class FaceAnimator : MonoBehaviour
         // heh heh. lmao, even!
 
         faceRenderer = face.GetComponent<MeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -59,6 +63,7 @@ public class FaceAnimator : MonoBehaviour
                 break;
             case 3: // Idle Face
                 UpdateFace(sadFace);
+                audioSource.PlayOneShot(audioClip);
                 break;
             case 4: // Idle Face
                 UpdateFace(happyFace);

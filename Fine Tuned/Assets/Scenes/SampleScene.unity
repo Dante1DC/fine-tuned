@@ -2739,6 +2739,7 @@ MonoBehaviour:
   happyFace: {fileID: 2100000, guid: 39ed974e04d358c4d98862fd9d86cb66, type: 2}
   idleFace: {fileID: 2100000, guid: f8df526514749444aad725c5f62b5f55, type: 2}
   face: {fileID: 2120248737}
+  audioClip: {fileID: 8300000, guid: 25b42ea9db0fae24193d78f3fd4d705d, type: 3}
 --- !u!1 &1674684344
 GameObject:
   m_ObjectHideFlags: 0
