@@ -1,9 +1,13 @@
+using Palmmedia.ReportGenerator.Core.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 public class NoteSpawner : MonoBehaviour
 {
@@ -37,17 +41,10 @@ public class NoteSpawner : MonoBehaviour
 
         noteSequence = new();
 
-        // foreach (Sprite keySprite in blackKeySprites)
-        //     blackKeys.Add(keySprite.name, keySprite);
+        foreach (Sprite keySprite in blackKeySprites)
+            blackKeys.Add(keySprite.name, keySprite);
         foreach (Sprite keySprite in whiteKeySprites)
             whiteKeys.Add(keySprite.name, keySprite);
-
-        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 2, pitch = pitch1, key = KeyCode.A });
-        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 4, pitch = pitch2, key = KeyCode.S });
-        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 1, pitch = pitch3, key = KeyCode.D });
-        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 1, pitch = pitch4, key = KeyCode.F });
-
-        SpawnNote(noteSequence[0]);
     }
 
     void Update()
@@ -64,8 +61,19 @@ public class NoteSpawner : MonoBehaviour
         CheckForKeyPress();
     }
 
+    public void AcceptNotes(string rawNotes)
+    {
+        NoteList noteList = JsonConvert.DeserializeObject<NoteList>(rawNotes);
+        foreach (NoteDTO note in noteList.notes)
+        {
+            Debug.Log(note.key);
+            noteSequence.Add(new Note { beats = note.beats, pitch = note.pitch, key = Enum.Parse<KeyCode>(note.key) });
+        }
+    }
+
     public void SpawnNote(Note note)
     {
+        Debug.Log(note.key);
         GameObject newNote = Instantiate(notePrefab, spawnPoint.position, Quaternion.identity);
         newNote.transform.SetParent(spawnPoint);
 

@@ -1,0 +1,19 @@
+{
+  "notes": [
+    {
+      "beats": 0,
+      "pitch": 0,
+      "key": "A"
+    },
+    {
+      "beats": 2,
+      "pitch": 160.0,
+      "key": "B"
+    },
+    {
+      "beats": 2,
+      "pitch": 160.0,
+      "key": "C"
+    }
+  ]
+}
