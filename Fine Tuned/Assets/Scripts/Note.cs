@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Note : MonoBehaviour
 {
@@ -8,15 +9,16 @@ public class Note : MonoBehaviour
     public int beats;
     public float pitch;
     public KeyCode key;
-    private SpriteRenderer spriteRenderer;
+
+    private Image image;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer && display)
+        image = GetComponent<Image>();
+        if (image != null && display != null)
         {
-            spriteRenderer.sprite = display;
+            image.sprite = display;
+            image.SetNativeSize();
         }
-        transform.position = new Vector2(transform.position.x, pitch);
     }
 }
