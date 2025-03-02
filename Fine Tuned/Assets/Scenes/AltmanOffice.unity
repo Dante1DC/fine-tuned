@@ -3007,12 +3007,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c938f3fbbc8ab047bcc09953b69f87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueFile: {fileID: 4900000, guid: 29bb13ead18311a4a806405fcbb34bf8, type: 3}
+  dialogueFile: {fileID: 4900000, guid: 9d23dfb3d9c5849fd91da48eb0b847d0, type: 3}
   dialogueText: {fileID: 455862386}
   nameText: {fileID: 863134284}
   dialoguePanel: {fileID: 439105656}
   namePanel: {fileID: 1605273068}
-  dialogueFileName: drummer_crashnorman
+  dialogueFileName: sam_altman
   typingSpeed: 0.05
   headTransform: {fileID: 1506427438}
 --- !u!65 &2016924504

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FaceAnimator_tony : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class FaceAnimator_tony : MonoBehaviour
 
     // Reference to the Dialogue script
     private Dialogue dialogue;
+
+    public GameObject panelToFill; // Change to a public GameObject variable for the panel
 
     // Start is called before the first frame update
     void Start()
@@ -63,8 +67,22 @@ public class FaceAnimator_tony : MonoBehaviour
             case 4: // Idle Face
                 UpdateFace(sadFace);
                 break;
-            case 5: // Idle Face
+            case 5: // Fill panel with black for one second
+                //FillPanelWithBlack();
                 UpdateFace(happyFace);
+                break;
+            case 6: 
+                UpdateFace(sadFace);
+                break;
+            case 7: 
+                UpdateFace(idleFace);
+                break;
+            case 8: 
+                UpdateFace(happyFace);
+                break;
+            case 9:
+                Debug.Log("new scene");
+                SceneManager.LoadScene("AltmanOffice");
                 break;
             default:
                 UpdateFace(idleFace); // Default to idle face

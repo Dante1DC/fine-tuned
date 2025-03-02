@@ -5,7 +5,11 @@
         "Yes, I can play music. I'm a clarinet player, but I haven't played in years.",
         "Ever since I got this new job, I haven't had the time.",
         "     ",
-        "You really think it's a good idea? Alright, let's groove!"
+        "You really think it's a good idea? Alright, let's groove!",
+        "Wait! My lunch break is over!",
+        "I've gotta get back to work!",
+        "Wait... You can get me out of this? Alright, come on!",
+        "                  "
     ],
     "dialogueName": "Tuba Tony"
 }
