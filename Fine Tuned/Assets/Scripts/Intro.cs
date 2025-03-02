@@ -42,9 +42,10 @@ public class Intro : MonoBehaviour
         Back.SetActive(false);
         Middle.SetActive(false);
         Front.SetActive(false);
+
         StartCoroutine(ScrollText());
 
-        if (isScrolling){
+        if (isScrolling = true){
             startButton.gameObject.SetActive(false);
             settingsButton.gameObject.SetActive(false);
         }
