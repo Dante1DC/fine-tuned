@@ -3,8 +3,8 @@
     {
       "notes": [
         {
-          "beats": 0,
-          "pitch": 0,
+          "beats": 4,
+          "pitch": 100.0,
           "key": "A"
         },
         {
@@ -22,7 +22,7 @@
     {
       "notes": [
         {
-          "beats": 0,
+          "beats": 4,
           "pitch": 100.0,
           "key": "A"
         },
