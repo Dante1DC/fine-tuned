@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FaceAnimator : MonoBehaviour
 {
@@ -79,6 +80,10 @@ public class FaceAnimator : MonoBehaviour
                 break;
             case 8: // Idle Face
                 UpdateFace(sadFace);
+                break;
+            case 9: // empty
+                UpdateFace(sadFace);
+                SceneManager.LoadScene("Minigame");
                 break;
             default:
                 UpdateFace(idleFace); // Default to idle face
