@@ -1,4 +1,3 @@
-using Palmmedia.ReportGenerator.Core.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,6 +32,8 @@ public class NoteSpawner : MonoBehaviour
     public List<Note> noteSequence;
 
     public TextAsset text;
+
+    public GameObject endCredits;
 
     private int sequenceIndex = 0;
 
@@ -86,7 +87,9 @@ public class NoteSpawner : MonoBehaviour
         if (!TurnManager.Instance.IsPlayerTurn() && noteSequence == null)
         {
             TurnManager.Instance.UpdateTrack();
-            SceneManager.LoadScene("SampleScene");
+            endCredits.SetActive(true);
+            GameObject.FindFirstObjectByType<MusicHandler>().StopSong();
+            Debug.Log(endCredits.name);
         }
     }
 

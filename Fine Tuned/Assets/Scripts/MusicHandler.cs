@@ -27,6 +27,11 @@ public class MusicHandler : MonoBehaviour
         audioSource.Play();
     }
 
+    public void StopSong()
+    {
+        audioSource.Stop();
+    }
+
     private IEnumerator PlayMusicWithDelay() // Coroutine to handle delay
     {
         yield return new WaitForSeconds(30); // Wait for 5 seconds

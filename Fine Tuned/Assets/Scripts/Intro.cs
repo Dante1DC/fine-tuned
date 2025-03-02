@@ -26,11 +26,6 @@ public class Intro : MonoBehaviour
     public GameObject Middle; 
     public GameObject Front;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     void Start()
     {
         startingRectangle.GetComponent<Renderer>().material.color = Color.black;

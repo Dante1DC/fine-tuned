@@ -56,7 +56,7 @@ public class FaceAnimatorAltman : MonoBehaviour
         switch (currentOptionIndex)
         {
             case 8: // empty
-                canvas.SetActive(true);
+                SceneManager.LoadScene("Minigame");
                 break;
             default:
                 UpdateFace(idleFace); // Default to idle face
