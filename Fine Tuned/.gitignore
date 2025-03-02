@@ -51,7 +51,6 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
-
 # Unity3D generated file on crash reports
 sysinfo.txt
 
@@ -71,3 +70,21 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Project Assets
+/Assets/Barrels
+/Assets/JohnFarmer
+/Assets/Customizable Skybox/
+/Assets/Barrels
+/Assets/trash_can
+/Assets/Versatile Studio Assets
+/Assets/Vefects
+/Assets/RobotSphere
+/Assets/ScifiOfficeLite
+/Assets/Lamp Assets
+.vsconfig
+/Assets/HeneGames/*
+/Assets/Kevin Iglesias/* 
+/Assets/Low Poly Bros
+/Assets/Fantasy Skybox Free
+/Assets/Awesome_Lamp_Collection/*
