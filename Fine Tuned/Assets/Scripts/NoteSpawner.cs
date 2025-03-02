@@ -8,97 +8,83 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
-using System.IO;
-using UnityEngine.SceneManagement;
 
 public class NoteSpawner : MonoBehaviour
 {
     const float BEAT_DURATION = 0.25f;
-    public Boolean isPlayer;
+
     public GameObject notePrefab;
     public Transform spawnPoint;
     public float noteSpeed = 120f;
 
-    [SerializeField] private Sprite[] keySprites;
-    private Dictionary<string, Sprite> keys = new();
+    [SerializeField] private Sprite[] blackKeySprites;
+    [SerializeField] private Sprite[] whiteKeySprites;
+    private Dictionary<string, Sprite> blackKeys = new();
+    private Dictionary<string, Sprite> whiteKeys = new();
 
     private List<GameObject> activeNotes = new();
     private List<Note> activeNoteData = new();
     private float startTime;
-    private int numNotes = 0;
+    private int numNotes = 1;
     private int noteIndex = 0;
     private int score = 0;
 
-    public List<List<Note>> noteSequences = new();
+    public List<List<Note>> noteSequences;
     public List<Note> noteSequence;
 
     public TextAsset text;
 
     private int sequenceIndex = 0;
 
-    private float pitchOffset;
+    private readonly float pitch1 = 160f;
+    private readonly float pitch2 = 130f;
+    private readonly float pitch3 = 100f;
+    private readonly float pitch4 = 70f;
+    private readonly float pitch5 = 40f;
 
     void Start()
     {
         startTime = Time.time;
 
-        AcceptNotes(TurnManager.Instance.CurrentTrack().text);
-        noteSequence = noteSequences[sequenceIndex];
+        noteSequence = new();
 
-        foreach (Sprite keySprite in keySprites)
-            keys.Add(keySprite.name, keySprite);
+        foreach (Sprite keySprite in blackKeySprites)
+            blackKeys.Add(keySprite.name, keySprite);
+        foreach (Sprite keySprite in whiteKeySprites)
+            whiteKeys.Add(keySprite.name, keySprite);
 
-        pitchOffset = !isPlayer ? 200 : 0;
+        if (text != null)
+        {
+            AcceptNotes(text.text);
+        }
     }
 
     void Update()
     {
-        if (TurnManager.Instance.IsPlayerTurn() == isPlayer && noteSequence != null)
-        {
-            if (numNotes == 0)
-            {
-                SpawnNote(noteSequence[0]);
-                startTime = Time.time;
-                numNotes++;
-            }
-            float elapsedTime = Time.time - startTime;
-            if (numNotes < noteSequence.Count && elapsedTime >= noteSequence[numNotes - 1].beats * BEAT_DURATION)
-            {
-                SpawnNote(noteSequence[numNotes]);
-                startTime = Time.time;
-                numNotes++;
-            }
-            MoveNotes();
+        float elapsedTime = Time.time - startTime;
 
-            if (noteIndex < activeNotes.Count && isPlayer)
-            {
-                CheckForKeyPress();
-            }
-            if (activeNotes.Count == 0)
-            {
-                sequenceIndex++;
-                noteSequence = (sequenceIndex < noteSequences.Count) ? noteSequences[sequenceIndex] : null;
-                TurnManager.Instance.SwitchTurn();
-                numNotes = 0;
-                noteIndex = 0;
-            }
-        }
-        if (!TurnManager.Instance.IsPlayerTurn() && noteSequence == null)
+        if (numNotes < noteSequence.Count && elapsedTime >= noteSequence[numNotes - 1].beats * BEAT_DURATION)
         {
-            TurnManager.Instance.UpdateTrack();
-            SceneManager.LoadScene("SampleScene");
+            SpawnNote(noteSequence[numNotes]);
+            startTime = Time.time;
+            numNotes++;
+        }
+        MoveNotes();
+        if (noteIndex < activeNotes.Count)
+        {
+            CheckForKeyPress();
         }
     }
 
     public void AcceptNotes(string rawNotes)
     {
-        ChunkList chunks = JsonConvert.DeserializeObject<ChunkList>(rawNotes);
-        foreach (NoteList chunk in chunks.chunks)
+        List<NoteList> notes = JsonConvert.DeserializeObject<List<NoteList>>(rawNotes);
+        foreach (NoteList chunk in notes)
         {
             List<Note> noteChunk = new();
             foreach (NoteDTO note in chunk.notes)
             {
-                noteChunk.Add(new Note { beats = note.beats, pitch = note.pitch + pitchOffset, key = Enum.Parse<KeyCode>(note.key) });
+                noteChunk.Add(new Note { beats = note.beats, pitch = note.pitch, key = Enum.Parse<KeyCode>(note.key) });
             }
             noteSequences.Add(noteChunk);
         }
@@ -112,7 +98,7 @@ public class NoteSpawner : MonoBehaviour
         Image noteImage = newNote.GetComponent<Image>();
         noteImage.sprite = GetSpriteForKey(note.key);
 
-        newNote.transform.position = new Vector3(spawnPoint.position.x + spawnPoint.GetComponent<RectTransform>().rect.width / 2, note.pitch + pitchOffset, spawnPoint.position.z);
+        newNote.transform.position = new Vector3(spawnPoint.position.x + spawnPoint.GetComponent<RectTransform>().rect.width / 2, note.pitch, spawnPoint.position.z);
 
         activeNotes.Add(newNote);
         activeNoteData.Add(note);
@@ -144,7 +130,7 @@ public class NoteSpawner : MonoBehaviour
         if (activeNoteData.Count > 0
             && Input.GetKeyDown(activeNoteData[noteIndex].key))
         {
-            if (activeNotes[noteIndex].transform.position.x < 210 && activeNotes[noteIndex].transform.position.x > 190)
+            if (activeNotes[noteIndex].transform.position.x < 100f && activeNotes[noteIndex].transform.position.x > 10f)
             {
                 activeNotes[noteIndex].GetComponent<Image>().color = Color.green;
                 score += 100;
@@ -160,6 +146,7 @@ public class NoteSpawner : MonoBehaviour
     private Sprite GetSpriteForKey(KeyCode key)
     {
         string keyName = key.ToString();
-        return keys.ContainsKey(keyName) ? keys[keyName] : null;
+        return blackKeys.ContainsKey(keyName) ? blackKeys[keyName] :
+               whiteKeys.ContainsKey(keyName) ? whiteKeys[keyName] : null;
     }
 }
