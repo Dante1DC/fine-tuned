@@ -55,7 +55,7 @@ public class FaceAnimatorAltman : MonoBehaviour
         // Update the face based on the current dialogue option
         switch (currentOptionIndex)
         {
-            case 7: // empty
+            case 8: // empty
                 canvas.SetActive(true);
                 break;
             default:
