@@ -12,6 +12,9 @@ public class FaceAnimator_jimmy : MonoBehaviour
 
     public GameObject face;
 
+    public MusicHandler musicHandler;
+    public AudioClip thirdSong;
+
     // Reference to the Dialogue script
     private Dialogue dialogue;
 
@@ -72,7 +75,7 @@ public class FaceAnimator_jimmy : MonoBehaviour
                 break;
             case 7: // empty
                 UpdateFace(happyFace);
-                SceneManager.LoadScene("Minigame");
+                musicHandler.UpdateSong(thirdSong);
                 break;
             default:
                 UpdateFace(idleFace); // Default to idle face

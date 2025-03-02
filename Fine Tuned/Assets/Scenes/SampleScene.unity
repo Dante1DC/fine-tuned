@@ -547,6 +547,8 @@ MonoBehaviour:
   happyFace: {fileID: 2100000, guid: 00d8d8857c13b964cbc8cc6c062754e5, type: 2}
   idleFace: {fileID: 2100000, guid: eb13fca8c51b7714199907bfc78f1f25, type: 2}
   face: {fileID: 314952529}
+  musicHandler: {fileID: 1101160586}
+  thirdSong: {fileID: 8300000, guid: eb2846c2be760e842ae60375b8941fd7, type: 3}
 --- !u!65 &337916728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1400,6 +1402,8 @@ MonoBehaviour:
   happyFace: {fileID: 2100000, guid: 077ddcd86bbc2fa4cbf19b3d030af392, type: 2}
   idleFace: {fileID: 2100000, guid: 470547113eb478b439eaf02989c91e82, type: 2}
   face: {fileID: 1371208577}
+  fourthSong: {fileID: 8300000, guid: ba5103c88edb1f84c9e42710fe9df584, type: 3}
+  songHandler: {fileID: 1101160586}
   panelToFill: {fileID: 235599518}
 --- !u!65 &816329750
 BoxCollider:
@@ -3807,6 +3811,8 @@ MonoBehaviour:
   happyFace: {fileID: 2100000, guid: 39ed974e04d358c4d98862fd9d86cb66, type: 2}
   idleFace: {fileID: 2100000, guid: f8df526514749444aad725c5f62b5f55, type: 2}
   face: {fileID: 2120248737}
+  musicHandler: {fileID: 1101160586}
+  secondSong: {fileID: 8300000, guid: 98c8e1b548f54cf41bd409a8a3d4a9bb, type: 3}
   audioClip: {fileID: 8300000, guid: 25b42ea9db0fae24193d78f3fd4d705d, type: 3}
 --- !u!1 &1674684344
 GameObject:

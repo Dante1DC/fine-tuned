@@ -13,6 +13,10 @@ public class FaceAnimator_tony : MonoBehaviour
 
     public GameObject face;
 
+    public AudioClip fourthSong;
+
+    public MusicHandler songHandler;
+
     // Reference to the Dialogue script
     private Dialogue dialogue;
 
@@ -81,8 +85,8 @@ public class FaceAnimator_tony : MonoBehaviour
                 UpdateFace(happyFace);
                 break;
             case 9:
-                Debug.Log("new scene");
                 SceneManager.LoadScene("AltmanOffice");
+                songHandler.UpdateSong(fourthSong);
                 break;
             default:
                 UpdateFace(idleFace); // Default to idle face

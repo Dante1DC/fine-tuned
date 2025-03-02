@@ -24,7 +24,12 @@ public class Intro : MonoBehaviour
     // ui images (title card background)
     public GameObject Back; 
     public GameObject Middle; 
-    public GameObject Front; 
+    public GameObject Front;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     void Start()
     {
