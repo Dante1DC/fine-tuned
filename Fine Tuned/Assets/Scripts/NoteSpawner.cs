@@ -32,6 +32,8 @@ public class NoteSpawner : MonoBehaviour
     public List<List<Note>> noteSequences;
     public List<Note> noteSequence;
 
+    public TextAsset text;
+
     private int sequenceIndex = 0;
 
     private readonly float pitch1 = 160f;
@@ -50,6 +52,11 @@ public class NoteSpawner : MonoBehaviour
             blackKeys.Add(keySprite.name, keySprite);
         foreach (Sprite keySprite in whiteKeySprites)
             whiteKeys.Add(keySprite.name, keySprite);
+
+        if (text != null)
+        {
+            AcceptNotes(text.text);
+        }
     }
 
     void Update()
