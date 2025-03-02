@@ -717,6 +717,7 @@ RectTransform:
   - {fileID: 1418734369}
   m_Father: {fileID: 1684067775}
   m_RootOrder: 1
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -914,7 +915,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1530214730}
-  - component: {fileID: 1530214731}
   - component: {fileID: 1530214732}
   m_Layer: 5
   m_Name: Staff
@@ -960,7 +960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d832d23408d48b49cbf0c3db0a8772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonText: {fileID: 0}
   notePrefab: {fileID: 2726445612500368966, guid: a5a676b8075434fbc9dd6a53ffaba834, type: 3}
   spawnPoint: {fileID: 0}
   noteSpeed: 120
@@ -1097,6 +1096,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f49b0caa5b04a88419682f0c90f95a99, type: 3}
   - {fileID: 21300000, guid: 885b8504847ef9948bd402ffb777829d, type: 3}
   whiteKeySprites: []
+  noteSequence: []
 --- !u!114 &1530214732
 MonoBehaviour:
   m_ObjectHideFlags: 0

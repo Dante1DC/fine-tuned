@@ -23,11 +23,13 @@ public class NoteSpawner : MonoBehaviour
     private Dictionary<string, Sprite> whiteKeys = new();
 
     private List<GameObject> activeNotes = new();
+    private List<Note> activeNoteData = new();
     private float startTime;
-    private int noteIndex = 1;
+    private int numNotes = 1;
+    private int noteIndex = 0;
+    private int score = 0;
 
     public List<Note> noteSequence;
-    private float beatCount;
 
     private readonly float pitch1 = 160f;
     private readonly float pitch2 = 130f;
@@ -51,14 +53,17 @@ public class NoteSpawner : MonoBehaviour
     {
         float elapsedTime = Time.time - startTime;
 
-        if (noteIndex < noteSequence.Count && elapsedTime >= noteSequence[noteIndex - 1].beats * BEAT_DURATION)
+        if (numNotes < noteSequence.Count && elapsedTime >= noteSequence[numNotes - 1].beats * BEAT_DURATION)
         {
-            SpawnNote(noteSequence[noteIndex]);
+            SpawnNote(noteSequence[numNotes]);
             startTime = Time.time;
-            noteIndex++;
+            numNotes++;
         }
         MoveNotes();
-        CheckForKeyPress();
+        if (noteIndex < activeNotes.Count)
+        {
+            CheckForKeyPress();
+        }
     }
 
     public void AcceptNotes(string rawNotes)
@@ -83,6 +88,7 @@ public class NoteSpawner : MonoBehaviour
         newNote.transform.position = new Vector3(spawnPoint.position.x + spawnPoint.GetComponent<RectTransform>().rect.width / 2, note.pitch, spawnPoint.position.z);
 
         activeNotes.Add(newNote);
+        activeNoteData.Add(note);
     }
 
     private void MoveNotes()
@@ -96,6 +102,11 @@ public class NoteSpawner : MonoBehaviour
                 {
                     Destroy(activeNotes[i]);
                     activeNotes.RemoveAt(i);
+                    activeNoteData.RemoveAt(i);
+                    if (noteIndex > 0)
+                    {
+                        noteIndex--;
+                    }
                 }
             }
         }
@@ -103,20 +114,19 @@ public class NoteSpawner : MonoBehaviour
 
     private void CheckForKeyPress()
     {
-        foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
+        if (activeNoteData.Count > 0
+            && Input.GetKeyDown(activeNoteData[noteIndex].key))
         {
-            if (Input.GetKeyDown(key))
+            if (activeNotes[noteIndex].transform.position.x < 100f && activeNotes[noteIndex].transform.position.x > 10f)
             {
-                for (int i = 0; i < activeNotes.Count; i++)
-                {
-                    if (activeNotes[i] != null && activeNotes[i].GetComponent<Note>().key == key && Mathf.Abs(activeNotes[i].transform.position.x) < 1f)
-                    {
-                        Destroy(activeNotes[i]);
-                        activeNotes.RemoveAt(i);
-                        break;
-                    }
-                }
+                activeNotes[noteIndex].GetComponent<Image>().color = Color.green;
+                score += 100;
             }
+            else
+            {
+                activeNotes[noteIndex].GetComponent<Image>().color = Color.red;
+            }
+            noteIndex++;
         }
     }
 
