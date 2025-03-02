@@ -14,14 +14,22 @@ public class Intro : MonoBehaviour
     public GameObject titleCard;
     public Button startButton;
     public Button settingsButton;
-    public float scrollSpeed = 0.5f;
-    public float cameraMoveSpeed = 0.1f;
+    public float scrollSpeed = 1f;
+    public float cameraMoveSpeed = 1f;
+    public Transform player; // Reference to the player object
 
     private bool isScrolling = true;
     private bool isTitleCardActive = false;
 
     void Start()
     {
+        startingRectangle.GetComponent<Renderer>().material.color = Color.black;
+        Debug.Log("Time Scale: " + Time.timeScale);
+        if (playerCamera == null)
+        {
+            playerCamera = Camera.main;
+        }
+        
         playerCamera.transform.position = cameraStartPosition.position;
         playerCamera.transform.LookAt(startingRectangle.transform);
         titleCard.SetActive(false);
@@ -32,18 +40,22 @@ public class Intro : MonoBehaviour
     {
         if (isScrolling)
         {
-            playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, cameraEndPosition.position, cameraMoveSpeed * Time.deltaTime);
+            // Move the player (and thus the camera) from start to end position
+            player.position = Vector3.Lerp(player.position, cameraEndPosition.position, (cameraMoveSpeed/10) * Time.deltaTime);
         }
     }
 
     private IEnumerator ScrollText()
     {
+        //Debug.Log("Starting text scroll...");
         string fullText = scrollingText.text;
         scrollingText.text = "";
         foreach (char letter in fullText.ToCharArray())
         {
             scrollingText.text += letter;
-            yield return new WaitForSeconds(scrollSpeed);
+            //Debug.Log($"Adding letter: {letter}");
+            Debug.Log("Time Scale: " + Time.timeScale);
+            yield return new WaitForSeconds(scrollSpeed / 15);
         }
         isScrolling = false;
         ShowTitleCard();
@@ -51,7 +63,39 @@ public class Intro : MonoBehaviour
 
     private void ShowTitleCard()
     {
-        startingRectangle.GetComponent<Renderer>().material.color = Color.white; // Change texture/color
+        Debug.Log("Showing title card...");
+        StartCoroutine(FadeOutTextAndChangeColor());
+    }
+
+    private IEnumerator FadeOutTextAndChangeColor()
+    {
+        yield return new WaitForSeconds(1f); // Wait for one second
+
+        float duration = 2f; // Duration of the fade effect
+        float elapsedTime = 0f;
+
+        Color initialTextColor = scrollingText.color;
+        Color initialRectangleColor = startingRectangle.GetComponent<Renderer>().material.color;
+        Color targetRectangleColor = Color.white;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+
+            // Fade out text
+            scrollingText.color = new Color(initialTextColor.r, initialTextColor.g, initialTextColor.b, Mathf.Lerp(1f, 0f, t));
+
+            // Change rectangle color from black to white
+            startingRectangle.GetComponent<Renderer>().material.color = Color.Lerp(initialRectangleColor, targetRectangleColor, t);
+
+            yield return null;
+        }
+
+        // Ensure final values are set
+        scrollingText.color = new Color(initialTextColor.r, initialTextColor.g, initialTextColor.b, 0f);
+        startingRectangle.GetComponent<Renderer>().material.color = targetRectangleColor;
+
         titleCard.SetActive(true);
         isTitleCardActive = true;
         startButton.onClick.AddListener(StartGame);
@@ -60,15 +104,14 @@ public class Intro : MonoBehaviour
 
     private void StartGame()
     {
-        // Spin character 180 degrees
+        Debug.Log("Starting game...");
         playerCamera.transform.Rotate(0, 180, 0);
-        // Unlock movement controls
-        // Example: playerController.enabled = true;
-        SceneManager.LoadScene("GameScene"); // Load the main game scene
+        SceneManager.LoadScene("GameScene");
     }
 
     private void OpenSettings()
     {
+        Debug.Log("Opening settings...");
         // Open settings menu
     }
 }
