@@ -12,3 +12,6 @@ In order to fork or continue this project, you must first have a Unity account a
 - For Windows and Mac, go here: https://unity.com/download
 - For Linux, follow these instructions: https://docs.unity3d.com/hub/manual/InstallHub.html#install-hub-linux
 After installing Unity, clone this repository. Then, open Unity Hub, select Open/Import Project, and select the folder that you cloned this repository in. After that, it should load this project into your workspace, and you can begin developing. 
+
+# Credits
+Developed by [Dante Dyches-Chandler](linkedin.com/in/dante-dc), [Drew Hall](https://www.linkedin.com/in/athall2026/), [Caiya Khammaly](https://www.linkedin.com/in/caiya-khammaly/), and [Nathan Van Drie](https://www.linkedin.com/in/nathan-van-drie/) for [Cornhacks 2025](https://unlcornhacks.com/#/home). Main theme and game music was written, recorded, and produced by us. 
