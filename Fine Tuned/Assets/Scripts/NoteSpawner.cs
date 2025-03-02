@@ -29,7 +29,10 @@ public class NoteSpawner : MonoBehaviour
     private int noteIndex = 0;
     private int score = 0;
 
+    public List<List<Note>> noteSequences;
     public List<Note> noteSequence;
+
+    private int sequenceIndex = 0;
 
     private readonly float pitch1 = 160f;
     private readonly float pitch2 = 130f;
@@ -68,17 +71,20 @@ public class NoteSpawner : MonoBehaviour
 
     public void AcceptNotes(string rawNotes)
     {
-        NoteList noteList = JsonConvert.DeserializeObject<NoteList>(rawNotes);
-        foreach (NoteDTO note in noteList.notes)
+        List<NoteList> notes = JsonConvert.DeserializeObject<List<NoteList>>(rawNotes);
+        foreach (NoteList chunk in notes)
         {
-            Debug.Log(note.key);
-            noteSequence.Add(new Note { beats = note.beats, pitch = note.pitch, key = Enum.Parse<KeyCode>(note.key) });
+            List<Note> noteChunk = new();
+            foreach (NoteDTO note in chunk.notes)
+            {
+                noteChunk.Add(new Note { beats = note.beats, pitch = note.pitch, key = Enum.Parse<KeyCode>(note.key) });
+            }
+            noteSequences.Add(noteChunk);
         }
     }
 
     public void SpawnNote(Note note)
     {
-        Debug.Log(note.key);
         GameObject newNote = Instantiate(notePrefab, spawnPoint.position, Quaternion.identity);
         newNote.transform.SetParent(spawnPoint);
 
