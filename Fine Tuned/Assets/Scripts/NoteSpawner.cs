@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NoteSpawner : MonoBehaviour
 {
@@ -14,30 +15,37 @@ public class NoteSpawner : MonoBehaviour
 
     [SerializeField] private Sprite[] blackKeySprites;
     [SerializeField] private Sprite[] whiteKeySprites;
-    private Dictionary<string, Sprite> blackKeys = new Dictionary<string, Sprite>();
-    private Dictionary<string, Sprite> whiteKeys = new Dictionary<string, Sprite>();
+    private Dictionary<string, Sprite> blackKeys = new();
+    private Dictionary<string, Sprite> whiteKeys = new();
 
-    private List<GameObject> activeNotes = new List<GameObject>();
+    private List<GameObject> activeNotes = new();
     private float startTime;
     private int noteIndex = 1;
 
-    public List<Note> noteSequence = new List<Note>();
+    public List<Note> noteSequence;
     private float beatCount;
+
+    private readonly float pitch1 = 160f;
+    private readonly float pitch2 = 130f;
+    private readonly float pitch3 = 100f;
+    private readonly float pitch4 = 70f;
+    private readonly float pitch5 = 40f;
 
     void Start()
     {
         startTime = Time.time;
+
+        noteSequence = new();
 
         // foreach (Sprite keySprite in blackKeySprites)
         //     blackKeys.Add(keySprite.name, keySprite);
         foreach (Sprite keySprite in whiteKeySprites)
             whiteKeys.Add(keySprite.name, keySprite);
 
-
-        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 1, pitch = 100f, key = KeyCode.A });
-        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 1, pitch = 100f, key = KeyCode.S });
-        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 1, pitch = 100f, key = KeyCode.D });
-        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 1, pitch = 100f, key = KeyCode.F });
+        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 2, pitch = pitch1, key = KeyCode.A });
+        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 4, pitch = pitch2, key = KeyCode.S });
+        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 1, pitch = pitch3, key = KeyCode.D });
+        noteSequence.Add(new Note { display = whiteKeySprites[0], beats = 1, pitch = pitch4, key = KeyCode.F });
 
         SpawnNote(noteSequence[0]);
     }
@@ -60,17 +68,12 @@ public class NoteSpawner : MonoBehaviour
     {
         GameObject newNote = Instantiate(notePrefab, spawnPoint.position, Quaternion.identity);
         newNote.transform.SetParent(spawnPoint);
-        Note noteComponent = newNote.GetComponent<Note>();
 
-        if (noteComponent != null)
-        {
-            noteComponent.display = GetSpriteForKey(note.key); // Assign correct sprite
-            noteComponent.beats = note.beats;
-            noteComponent.pitch = note.pitch;
-            noteComponent.key = note.key;
-            newNote.transform.position = new Vector3(spawnPoint.position.x + spawnPoint.GetComponent<Rect>().width / 2, note.pitch, spawnPoint.position.z);
-        }
-        newNote.SetActive(true);
+        Image noteImage = newNote.GetComponent<Image>();
+        noteImage.sprite = GetSpriteForKey(note.key);
+
+        newNote.transform.position = new Vector3(spawnPoint.position.x + spawnPoint.GetComponent<RectTransform>().rect.width / 2, note.pitch, spawnPoint.position.z);
+
         activeNotes.Add(newNote);
     }
 
